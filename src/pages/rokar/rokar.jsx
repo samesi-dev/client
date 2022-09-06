@@ -11,15 +11,17 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Autocomplete, capitalize, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Autocomplete, capitalize, ToggleButtonGroup } from '@mui/material';
 import Stack from '@mui/material/Stack';
-import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import axios from 'axios';
 import moment from 'moment';
+import MuiToggleButton from "@mui/material/ToggleButton";
+
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -182,6 +184,14 @@ export default function RowAndColumnSpacing() {
     setFormData({ description: '', amount: '', accountSelect: '', transectionType: '', accountType: 'zameendar', insertdate: moment().format('DD/MM/YYYY') })
   }
 
+
+  const ToggleButton = styled(MuiToggleButton)(({ selectedColor }) => ({
+    "&.Mui-selected, &.Mui-selected:hover": {
+      color: "white",
+      backgroundColor: selectedColor
+    }
+  }));
+
   return (
     <>
 
@@ -189,12 +199,12 @@ export default function RowAndColumnSpacing() {
         {/* Input Modal */}
         <div style={{ margin: 10 }}><div>
           <Button style={{ backgroundColor: '#0B2512', color: 'white', fontSize: 16 }} variant="outlined" onClick={handleClickOpen}>
-            نیا مال
+            نیا روکڑ
           </Button>
 
           <Dialog dir="rtl" open={open} onClose={handleClose}>
-            <DialogTitle dir="rtl" >{title}</DialogTitle>
-            <DialogContent >
+            <DialogTitle>{title}</DialogTitle>
+            <DialogContent>
               {/* DateSelect */}
               <div dir="rtl" style={{ float: "left", margin: 10 }}>
                 <Stack component="form" noValidate spacing={3}>
@@ -211,11 +221,10 @@ export default function RowAndColumnSpacing() {
                       shrink: true,
                     }}
                   />
-
-                </Stack></div>
+                </Stack>
+              </div>
               {/* This is to select Credit or Debit */}
               <ToggleButtonGroup
-
                 color="primary"
                 value={credit_debit}
                 exclusive
@@ -223,8 +232,8 @@ export default function RowAndColumnSpacing() {
                 name="transectionType"
                 id="transectionType"
               >
-                <ToggleButton value="credit" >جمع</ToggleButton>
-                <ToggleButton value="debit" >نام</ToggleButton>
+                <ToggleButton selectedColor="#0B2512" value="credit" >جمع</ToggleButton>
+                <ToggleButton selectedColor="#0B2512" value="debit" >نام</ToggleButton>
               </ToggleButtonGroup>
               <br />
               {/* This Is For Selecting which Account Type is crediting or Debiting */}
@@ -254,7 +263,7 @@ export default function RowAndColumnSpacing() {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Select Account Name"
+                    label="اکاؤنٹ کا انتخاب کریں"
                     inputProps={{
                       ...params.inputProps,
                       autoComplete: 'new-password', // disable autocomplete and autofill
@@ -262,24 +271,26 @@ export default function RowAndColumnSpacing() {
                   />
                 )}
               />
-              <TextField id="descriprion" value={formData.description} name="description" label="Description" variant="outlined" style={{ marginTop: 20, width: 500 }} onChange={handleTyping} />
-              <TextField id="amount" name="amount" value={formData.amount} label="Amount" variant="outlined" style={{ marginTop: 20, width: 500 }} onChange={handleTyping} />
+              <TextField id="descriprion" value={formData.description} name="description" label="تفصیل" variant="outlined" style={{ marginTop: 20, width: 500 }} onChange={handleTyping} />
+              <TextField id="amount" name="amount" value={formData.amount} label="رقم" variant="outlined" style={{ marginTop: 20, width: 500 }} onChange={handleTyping} />
               {/* <TextField id="amountInWords" name="amountInWords"formData={user.amountInWords} label="Amount In Words" variant='outlined' inputProps={{ readOnly: true }} style={{ marginTop: 20, width: 500 }} onClick={handleTyping} /> */}
             </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClearData}>Clear Data</Button>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleInsert}>Insert Data</Button>
+            <DialogActions style={{ float: 'right', }}>
+              <Button style={{ color: 'white', fontfamily: 'PakNastaleeq', backgroundColor: '#0B2512' }} onClick={handleInsert}>اندراج کریں</Button>
+              <Button style={{ color: '#0B2512', fontfamily: 'PakNastaleeq', backgroundColor: 'white', border: '1px solid #0B2512', marginRight: '8px', }} onClick={handleClose}>کینسل</Button>
+              <Button style={{ color: '#878787', fontfamily: 'PakNastaleeq', backgroundColor: '#D9D9D9' }} onClick={handleClearData}>کلئیر</Button>
+
             </DialogActions>
           </Dialog>
-        </div></div>
+        </div>
+        </div>
         <Divider />
         {/* Date */}
         <div dir="rtl" style={{ float: "left", margin: 10 }}>
           <Stack component="form" noValidate spacing={3}>
             <TextField
               id="dateField"
-              label="Rokar Date"
+              label="تاریخ"
               type="date"
               defaultValue={moment().format("YYYY-MM-DD")}
               onChange={handleDateChange}
@@ -291,21 +302,22 @@ export default function RowAndColumnSpacing() {
 
           </Stack></div>
         {/* Search */}
-        <div style={{ float: "Right" }}><Box sx={{ "& > :not(style)": { m: 1 } }}>
+        <div dir="rtl" style={{ float: "Right" }}><Box sx={{ "& > :not(style)": { m: 1 } }}>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-            <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Search" variant="outlined" />
+
+            <TextField id="input-with-sx" label="سرچ کریں" variant="outlined" />
           </Box>
-        </Box></div>
+        </Box>
+        </div>
       </div>
       {/* Accrodon */}
-      <Box sx={{ width: "100%" }}>
+      <Box dir="rtl" sx={{ width: "100%" }}>
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6}>
-            <Item style={{ backgroundColor: "red" }}>
+            <Item style={{ backgroundColor: '#0B2512', color: 'white' }}>
 
-              <Typography variant="h3" component="div">Credit</Typography>
+              <Typography variant="h3" component="div">کریڈٹ</Typography>
               <div>
                 {rokarList.map((list, id) => (
                   list.transectionType === "credit" ?
@@ -335,8 +347,8 @@ export default function RowAndColumnSpacing() {
             </Item>
           </Grid>
           <Grid item xs={6}>
-            <Item style={{ backgroundColor: "blue" }}>
-              <Typography variant="h3" component="div">Debit</Typography>
+            <Item style={{ backgroundColor: "#0B2512", color: 'white' }}>
+              <Typography variant="h3" component="div">ڈیبٹ</Typography>
               <div>
 
                 {rokarList.map((list, id) => (

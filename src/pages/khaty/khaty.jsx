@@ -22,7 +22,7 @@ import IconButton from '@mui/material/IconButton';
 import { Typography } from '@mui/material';
 import { TextareaAutosize } from '@mui/material';
 import { styled } from "@mui/material/styles";
-import Grid from '@mui/material/Grid';
+
 
 
 export default function FormDialog() {
@@ -178,7 +178,6 @@ export default function FormDialog() {
                 value={formData.accountType}
                 exclusive
                 onChange={handleAccountTypeChange}
-
                 name="accountType"
                 id="accountType"
                 size='large'
@@ -294,7 +293,7 @@ export default function FormDialog() {
                 id="descriprion"
                 value={formData.description}
                 name="description"
-                label="Description"
+                label="تفصیل"
                 variant="outlined"
                 size='small'
                 onChange={handleTyping}>
