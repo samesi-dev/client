@@ -315,7 +315,7 @@ export default function RowAndColumnSpacing() {
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6}>
-            <Item style={{ backgroundColor: '#0B2512', color: 'white' }}>
+            <Item style={{ backgroundColor: '#225326', color: 'white', fontfamily: 'PakNastaleeq', fontSize: '10px' }}>
 
               <Typography variant="h3" component="div">کریڈٹ</Typography>
               <div>
@@ -324,21 +324,21 @@ export default function RowAndColumnSpacing() {
 
                     <Accordion expanded={expanded === "panel_" + id} onChange={handleChange("panel_" + id)}>
                       <AccordionSummary aria-controls={"panel_" + id + "d-content"} id={"panel_" + id + "panel1d-header"}>
-                        <Typography>{id}</Typography>
+                        <Typography style={{ marginLeft: '10px' }}>{id}</Typography>
 
-                        <Typography style={{ backgroundColor: 'lightgreen' }}>
-                          {" ** "}
+                        <Typography style={{ backgroundColor: '#76A14C', }}>
+                          {" تفصیل: "}
                           {list.accountDetails[0].accountType === 'bank' ?
                             list.accountDetails[0].name + " | " + list.accountDetails[0].accountTitle
-                            : list.accountDetails[0].name + " S/O " + list.accountDetails[0].fatherName + " @ " +
-                            list.accountDetails[0].address + " ** "}
+                            : list.accountDetails[0].name + " ولد  " + list.accountDetails[0].fatherName + " @ " +
+                            list.accountDetails[0].address + "  "}
                         </Typography>
-                        <Typography style={{ backgroundColor: 'pink', paddingLeft: 30 }}>{" Rs: " + list.amount} </Typography>
+                        <Typography style={{ backgroundColor: '#FD921E', paddingLeft: 30, marginRight: '10px' }}>{" Rs: " + list.amount} </Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography>{list.description !== "" ? list.description : null}</Typography>
-                        <Typography><small>Tracking Id: {list._id}</small></Typography>
-                        <Typography><small>{"Account Type: " + list.accountDetails[0].accountType}</small></Typography>
+                        <Typography><small>ٹریکنگ آئی ڈی: {list._id}</small></Typography>
+                        <Typography><small>{"اکاؤنٹ: " + list.accountDetails[0].accountType}</small></Typography>
                       </AccordionDetails>
                     </Accordion>
                     : null
@@ -347,27 +347,27 @@ export default function RowAndColumnSpacing() {
             </Item>
           </Grid>
           <Grid item xs={6}>
-            <Item style={{ backgroundColor: "#0B2512", color: 'white' }}>
+            <Item style={{ backgroundColor: "#225326", color: 'white' }}>
               <Typography variant="h3" component="div">ڈیبٹ</Typography>
               <div>
 
                 {rokarList.map((list, id) => (
                   list.transectionType === "debit" ?
 
-                    <Accordion expanded={expanded === "panel_" + id} onChange={handleChange("panel_" + id)}>
+                    <Accordion dir="rtl" expanded={expanded === "panel_" + id} onChange={handleChange("panel_" + id)}>
                       <AccordionSummary aria-controls={"panel_" + id + "d-content"} id={"panel_" + id + "panel1d-header"}>
-                        <Typography>{id}</Typography>
-                        <Typography style={{ backgroundColor: 'lightgreen' }}>{" ** "}{list.accountDetails[0].accountType === 'bank' ?
+                        <Typography style={{ marginLeft: '10px' }}>{id}</Typography>
+                        <Typography style={{ backgroundColor: '#76A14C' }}>{"تفصیل: "}{list.accountDetails[0].accountType === 'bank' ?
                           list.accountDetails[0].name + " | " + list.accountDetails[0].accountTitle
-                          : list.accountDetails[0].name + " S/O " + list.accountDetails[0].fatherName + " @ " +
-                          list.accountDetails[0].address + " ** "} </Typography>
-                        <Typography style={{ backgroundColor: 'lightblue', paddingLeft: 30 }}>{" Rs: " + list.amount} </Typography>
+                          : list.accountDetails[0].name + " ولد  " + list.accountDetails[0].fatherName + " @ " +
+                          list.accountDetails[0].address + " "} </Typography>
+                        <Typography style={{ backgroundColor: '#E53612', paddingLeft: 30, marginRight: '10px' }}>{" Rs: " + list.amount} </Typography>
                       </AccordionSummary>
                       <AccordionDetails>
 
                         <Typography>{list.description !== "" ? list.description : null}</Typography>
-                        <Typography><small>Tracking Id: {list._id}</small></Typography>
-                        <Typography><small>{"Account Type: " + list.accountDetails[0].accountType}</small></Typography>
+                        <Typography><small>ٹریکنگ آئی ڈی: {list._id}</small></Typography>
+                        <Typography><small>{"اکاؤنٹ: " + list.accountDetails[0].accountType}</small></Typography>
 
 
                       </AccordionDetails>
