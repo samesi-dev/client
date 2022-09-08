@@ -49,28 +49,28 @@ const TafseelKhata = () => {
 
       {/* Card */}
 
-      <Card sx={{ display: 'flex' }}>
-        <Box sx={{ display: 'flex', flexDirection: 'row', bgcolor: 'pink', width: '100%' }}>
+      <Card dir="rtl" sx={{ display: 'flex' }}>
+        <Box dir="rtl" sx={{ display: 'flex', flexDirection: 'row', bgcolor: '#76A14C', width: '100%' }}>
           <CardContent sx={{ flex: '1 0 auto' }}>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              ID : {id}
+            <Typography variant="subtitle1" color="#fffff" component="div">
+              آئی ڈی: {id}
             </Typography>
 
             <Typography component="div" variant="h5">
               {ledger[0].name}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              Balnce : {ledger[0].balance}
+            <Typography variant="subtitle1" color="#fffff" component="div">
+              بیلنس : {ledger[0].balance}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              Phone # {ledger[0].phone}
+            <Typography variant="subtitle1" color="#fffff" component="div">
+              فون #: {ledger[0].phone}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              Commission {ledger[0].commission} %
+            <Typography variant="subtitle1" color="#fffff" component="div">
+              کمیشن :{ledger[0].commission} %
             </Typography>
 
           </CardContent>
-          <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1, width: '50%' }}>
+          <Box dir="rtl" sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1, width: '50%' }}>
             <TextareaAutosize component="div" variant="h5" minRows={8} style={{ width: "90%" }} onChange={handleNotesTyping} />
 
           </Box>
@@ -78,24 +78,25 @@ const TafseelKhata = () => {
       </Card>
       <Divider />
       {/* Table */}
-      <TableContainer component={Paper} sx={{ maxHeight: 500 }}>
+      <TableContainer dir="rtl" component={Paper} sx={{ maxHeight: 500 }}>
         <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead >
             <TableRow >
-              <TableCell sx={{ bgcolor: 'lightblue' }}>ID</TableCell>
-              <TableCell>Date|Time</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell align="right">Transection Type</TableCell>
-              <TableCell align="right">Debit</TableCell>
-              <TableCell align="right">Credit</TableCell>
-              <TableCell align="right">Total</TableCell>
+              <TableCell sx={{ bgcolor: '#0B2512', color: '#FFFFFF' }}>آئی
+                ڈی</TableCell>
+              <TableCell>تاریخ | وقت</TableCell>
+              <TableCell>تفصیل</TableCell>
+              <TableCell align="right">ٹرانزیکشن</TableCell>
+              <TableCell align="right">ڈیبٹ</TableCell>
+              <TableCell align="right">کریڈٹ</TableCell>
+              <TableCell align="right">ٹوٹل</TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-       
+
             {ledger[0].TransectionDetails.map((t, index) => (
-              <TableRow key={t._id}sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow key={t._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>{index}</TableCell>
                 <TableCell component="th" scope="row">
                   {t.date}
@@ -106,11 +107,11 @@ const TafseelKhata = () => {
                 <TableCell align="right">{t.transectionType.toUpperCase()}</TableCell>
                 <TableCell align="right">{t.transectionType === "debit" ? t.amount : null}</TableCell>
                 <TableCell align="right">{t.transectionType === "credit" ? t.amount : null}</TableCell>
-                
+
                 <TableCell align="right">{n = n + (t.transectionType === "credit" ? +t.amount : -t.amount)}</TableCell>
               </TableRow>
             ))}
-            <TableRow sx={{bgcolor:'lightgreen'}}><TableCell  colSpan={6}>Remaining Amount</TableCell><TableCell>{n}</TableCell></TableRow>
+            <TableRow sx={{ bgcolor: '#76A14C' }}><TableCell colSpan={6}>بقایا رقم</TableCell><TableCell>{n}</TableCell></TableRow>
           </TableBody>
         </Table>
       </TableContainer>

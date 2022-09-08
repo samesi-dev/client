@@ -11,7 +11,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Autocomplete, capitalize, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Autocomplete, capitalize, ToggleButtonGroup } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
@@ -20,6 +20,7 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import axios from 'axios';
 import moment from 'moment';
+import MuiToggleButton from "@mui/material/ToggleButton";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -165,6 +166,13 @@ export default function RowAndColumnSpacing() {
     fetchSellerHandler().then((data) => setSellerAccounts(data.details))
   }, [reducerValueSellerAccountType])
 
+  const ToggleButton = styled(MuiToggleButton)(({ selectedColor }) => ({
+    "&.Mui-selected, &.Mui-selected:hover": {
+      color: "white",
+      backgroundColor: selectedColor
+    }
+  }));
+
 
   React.useEffect(() => {
     fetchBuyerHandler().then((data) => setBuyerAccounts(data.details))
@@ -212,22 +220,22 @@ export default function RowAndColumnSpacing() {
   return (
     <>
 
-      <div className="container" style={{ marginBottom: 10 }}>
+      <div dir="rtl" className="container" style={{ marginBottom: 10 }}>
         {/* Input MAAL */}
         <div style={{ margin: 10 }}><div>
-          <Button variant="outlined" onClick={handleClickOpen}>
-            New Maal
+          <Button style={{ backgroundColor: '#0B2512', color: 'white', fontSize: 16 }} variant="outlined" onClick={handleClickOpen}>
+            نیو انٹری
           </Button>
-          <Dialog open={open} onClose={handleClose} maxWidth="lg" >
-            <DialogTitle >New Maal Entry</DialogTitle>
+          <Dialog dir="rtl" open={open} onClose={handleClose} maxWidth="lg" >
+            <DialogTitle style={{ fontfamily: 'PakNastaleeq', fontSize: '18px' }}>مال</DialogTitle>
             <DialogContent >
               {/* DateSelect */}
-              <div style={{ backgroundColor: "pink" }}>
-                <div style={{ margin: 10, backgroundColor: "green", }}>
+              <div dir="rtl">
+                <div style={{ margin: 10, }}>
                   <Stack component="form" noValidate spacing={3}>
                     <TextField
                       id="date"
-                      label="Insert Date"
+                      label="تاریخ"
                       type="date"
                       name="insertDate"
                       defaultValue={moment().format("YYYY-MM-DD")}
@@ -245,7 +253,7 @@ export default function RowAndColumnSpacing() {
               </div>
               <Divider variant="fullWidth" />
 
-              <div style={{ border: "solid 1px", float: 'left' }} >
+              <div dir="rtl" style={{ border: "solid 1px", float: 'left' }} >
                 {/*Seller Account Type Sellect*/}
 
                 <ToggleButtonGroup
@@ -255,14 +263,15 @@ export default function RowAndColumnSpacing() {
                   onChange={handleSellerAccountTypeChange}
                   style={{ margin: 5, }}
                 >
-                  <ToggleButton value="zameendar" >Zameendar</ToggleButton>
-                  <ToggleButton value="khareedar" >Khareedar</ToggleButton>
-                  <ToggleButton value="bank" >Bank</ToggleButton>
-                  <ToggleButton value="inner" >Androon</ToggleButton>
+                  <ToggleButton value="zameendar" selectedColor="#0B2512" >زمیندار</ToggleButton>
+                  <ToggleButton value="khareedar" selectedColor="#0B2512">خریدار</ToggleButton>
+                  <ToggleButton value="bank" selectedColor="#0B2512">بینک</ToggleButton>
+                  <ToggleButton value="inner" selectedColor="#0B2512" >اندرون</ToggleButton>
                 </ToggleButtonGroup>
 
                 {/* Seller */}
                 <Autocomplete
+
                   id="sellerAccountSelect"
                   sx={{ width: 500 }}
                   style={{ margin: 20, }}
@@ -273,7 +282,7 @@ export default function RowAndColumnSpacing() {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label="Select Seller Name"
+                      label="بیچنے والے کا نام منتخب کریں"
                       inputProps={{
                         ...params.inputProps,
                         autoComplete: 'new-password', // disable autocomplete and autofill
@@ -282,7 +291,7 @@ export default function RowAndColumnSpacing() {
                   )}
                 />
               </div>
-              <div style={{ border: "solid 1px", float: 'right' }}>
+              <div dir="rtl" style={{ border: "solid 1px", float: 'right' }}>
                 {/* Buyer Account Type Sellect */}
 
                 <ToggleButtonGroup
@@ -291,17 +300,18 @@ export default function RowAndColumnSpacing() {
                   exclusive
                   onChange={handleBuyerAccountTypeChange}
                   style={{ margin: 5, }}
-
+                  dir="rtl"
                 >
-                  <ToggleButton value="zameendar" >Zameendar</ToggleButton>
-                  <ToggleButton value="khareedar" >Khareedar</ToggleButton>
-                  <ToggleButton value="bank" >Bank</ToggleButton>
-                  <ToggleButton value="inner" >Androon</ToggleButton>
+                  <ToggleButton value="zameendar" selectedColor="#0B2512" >زمیندار</ToggleButton>
+                  <ToggleButton value="khareedar" selectedColor="#0B2512">خریدار</ToggleButton>
+                  <ToggleButton value="bank" selectedColor="#0B2512">بینک</ToggleButton>
+                  <ToggleButton value="inner" selectedColor="#0B2512" >اندرون</ToggleButton>
                 </ToggleButtonGroup>
                 <br />
 
                 {/* Buyer */}
                 <Autocomplete
+                  dir="rtl"
                   id="buyerAccountSelect"
                   sx={{ width: 500 }}
                   style={{ margin: 20, }}
@@ -312,7 +322,7 @@ export default function RowAndColumnSpacing() {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label="Select Buyer Name"
+                      label="خریدار کا نام منتخب کریں"
                       inputProps={{
                         ...params.inputProps,
                         autoComplete: 'new-password', // disable autocomplete and autofill
@@ -321,33 +331,33 @@ export default function RowAndColumnSpacing() {
                   )}
                 />
               </div>
-              <TextField id="cropName" value={formData.description} name="cropName" label="Crop Name" variant="outlined" style={{ margin: 20, width: 200 }} onChange={handleTyping} />
-              <TextField id="detailedWeight" name="detailedWeight" value={formData.detailedWeight} label="Detailed Weight" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
-              <TextField id="calculatedWeight" name="calculatedWeight" value={formData.calculatedWeight} label="Calculated Weight" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
-              <TextField id="rate" name="rate" value={formData.rate} label="Rate" variant="outlined" style={{ margin: 20, width: 150 }} onChange={handleTyping} />
-              <TextField id="netAmount" name="netAmount" value={formData.netAmount} label="Net Amount" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
-              <TextField id="commission" name="commission" value={formData.commission} label="Commission %" variant="outlined" style={{ margin: 20, width: 150 }} onChange={handleTyping} />
-              <TextField id="commissionAmount" name="commissionAmount" value={formData.commissionAmount} label="Commission Amount" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
-              <TextField id="chungi" name="chungi" value={formData.chungi} label="Chungi" variant="outlined" style={{ margin: 20, width: 150 }} onChange={handleTyping} />
-              <TextField id="munshiayana" name="munshiayana" value={formData.munshiayana} label="Munshiayana" variant="outlined" style={{ margin: 20, width: 150 }} onChange={handleTyping} />
-              <TextField id="totalCommission" name="totalCommission" value={formData.totalCommission} label="Total Commission" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
-              <TextField id="grossAmount" name="grossAmount" value={formData.grossAmount} label="Gross Amount" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
+              <TextField id="cropName" value={formData.description} name="cropName" label="فصل" variant="outlined" style={{ margin: 20, width: 200 }} onChange={handleTyping} />
+              <TextField id="detailedWeight" name="detailedWeight" value={formData.detailedWeight} label="تفصیلی وزن" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
+              <TextField id="calculatedWeight" name="calculatedWeight" value={formData.calculatedWeight} label="حساب شدہ وزن" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
+              <TextField id="rate" name="rate" value={formData.rate} label="ریٹ" variant="outlined" style={{ margin: 20, width: 150 }} onChange={handleTyping} />
+              <TextField id="netAmount" name="netAmount" value={formData.netAmount} label="اصل رقم" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
+              <TextField id="commission" name="commission" value={formData.commission} label=" کمیشن  %" variant="outlined" style={{ margin: 20, width: 150 }} onChange={handleTyping} />
+              <TextField id="commissionAmount" name="commissionAmount" value={formData.commissionAmount} label=" کمیشن اماؤنٹ " variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
+              <TextField id="chungi" name="chungi" value={formData.chungi} label="چنگی" variant="outlined" style={{ margin: 20, width: 150 }} onChange={handleTyping} />
+              <TextField id="munshiayana" name="munshiayana" value={formData.munshiayana} label="منشیانہ" variant="outlined" style={{ margin: 20, width: 150 }} onChange={handleTyping} />
+              <TextField id="totalCommission" name="totalCommission" value={formData.totalCommission} label="ٹوٹل کمیشن" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
+              <TextField id="grossAmount" name="grossAmount" value={formData.grossAmount} label="مجموعی رقم" variant="outlined" style={{ margin: 20, width: 300 }} onChange={handleTyping} />
               {/* <TextField id="amountInWords" name="amountInWords"formData={user.amountInWords} label="Amount In Words" variant='outlined' inputProps={{ readOnly: true }} style={{ marginTop: 20, width: 500 }} onClick={handleTyping} /> */}
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClearData}>Clear Data</Button>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleInsert}>Insert Data</Button>
+              <Button style={{ color: 'white', fontfamily: 'PakNastaleeq', backgroundColor: '#0B2512' }} onClick={handleInsert}>اندراج کریں</Button>
+              <Button style={{ color: '#0B2512', fontfamily: 'PakNastaleeq', backgroundColor: 'white', border: '1px solid #0B2512', marginRight: '8px', }} onClick={handleClose}>کینسل</Button>
+              <Button style={{ color: '#878787', fontfamily: 'PakNastaleeq', backgroundColor: '#D9D9D9' }} onClick={handleClearData}>کلئیر</Button>
             </DialogActions>
           </Dialog>
         </div></div>
         <Divider />
         {/* Date */}
-        <div style={{ float: "left", margin: 10 }}>
+        <div dir="rtl" style={{ float: "left", margin: 10 }}>
           <Stack component="form" noValidate spacing={3}>
             <TextField
               id="dateField"
-              label="Rokar Date"
+              label="تاریخ"
               type="date"
               defaultValue={moment().format("YYYY-MM-DD")}
               onChange={handleDateChange}
@@ -361,29 +371,29 @@ export default function RowAndColumnSpacing() {
         {/* Search */}
         <div style={{ float: "Right" }}><Box sx={{ "& > :not(style)": { m: 1 } }}>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-            <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Search" variant="outlined" />
+
+            <TextField id="input-with-sx" label="سرچ کریں" variant="outlined" />
           </Box>
         </Box></div>
       </div>
       {/* Accrodon */}
-      <Box sx={{ width: "100%" }}>
+      <Box dir="rtl" sx={{ width: "100%" }}>
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6}>
-            <Item style={{ backgroundColor: "red" }}>
+            <Item style={{ backgroundColor: '#225326', color: 'white', fontfamily: 'PakNastaleeq', fontSize: '10px' }}>
 
-              <Typography variant="h3" component="div">Seller</Typography>
+              <Typography style={{ fontfamily: 'PakNastaleeq' }} variant="h3" component="div">فروشندہ</Typography>
               <div>
                 {maalList.map((list, id) => (
                   <Accordion expanded={expanded === "panel_" + id} onChange={handleChange("panel_" + id)}>
                     <AccordionSummary aria-controls={"panel_" + id + "d-content"} id={"panel_" + id + "panel1d-header"}>
                       <Typography>{id}</Typography>
 
-                      <Typography style={{ backgroundColor: 'lightgreen' }}>
-                        {" ** "}
-                        {list.seller[0].name + " S/O " + list.seller[0].fatherName + " @ " +
-                          list.seller[0].address + " ** "}
+                      <Typography style={{ backgroundColor: '#76A14C', }}>
+                        {" تفصیل: "}
+                        {list.seller[0].name + " ولد " + list.seller[0].fatherName + " @ " +
+                          list.seller[0].address + "  "}
                       </Typography>
                       <Typography>{list.cropName}</Typography>
                       <Typography>{"~/" + list.grossAmount + "/="}</Typography>
@@ -391,12 +401,12 @@ export default function RowAndColumnSpacing() {
                       {/* <Typography style={{ backgroundColor: 'pink', paddingLeft: 30 }}>{" Rs: " + list.amount} </Typography> */}
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Typography>{"Weight: " + list.calculatedWeight + "kgs   Rate=/" + list.rate + "/="}</Typography>
-                      <Typography>{"Gross Amount: " + list.netAmount}</Typography>
-                      <Typography>{"TotalCommission: =/" + list.totalCommission + "/= (" + list.commissionAmount + "+" + list.chungi + "+" + list.munshiayana + ")"}</Typography>
-                      <Typography>{"Remaining Amount: " + list.grossAmount}</Typography>
-                      <Typography><small>Detailed Weight: {list.detailedWeight}</small></Typography>
-                      <Typography><small>Tracking Id: {list._id}</small></Typography>
+                      <Typography>{"وزن: " + list.calculatedWeight + "kgs   Rate=/" + list.rate + "/="}</Typography>
+                      <Typography>{"مجموعی رقم: " + list.netAmount}</Typography>
+                      <Typography>{"ٹوٹل کمیشن : =/" + list.totalCommission + "/= (" + list.commissionAmount + "+" + list.chungi + "+" + list.munshiayana + ")"}</Typography>
+                      <Typography>{"بقایا رقم: " + list.grossAmount}</Typography>
+                      <Typography><small>تفصیلی وزن: {list.detailedWeight}</small></Typography>
+                      <Typography><small>ٹریکنگ آئی ڈی: {list._id}</small></Typography>
                       <Typography><small>{"Account Type: " + list.seller[0].accountType}</small></Typography>
                     </AccordionDetails>
                   </Accordion>
@@ -406,8 +416,8 @@ export default function RowAndColumnSpacing() {
             </Item>
           </Grid>
           <Grid item xs={6}>
-            <Item style={{ backgroundColor: "blue" }}>
-              <Typography variant="h3" component="div">Buyer</Typography>
+            <Item style={{ backgroundColor: "#225326", color: 'white' }}>
+              <Typography variant="h3" component="div">خریدار</Typography>
               <div>
 
                 {/* {countBuyers.map((list, id) => { */}
@@ -416,10 +426,10 @@ export default function RowAndColumnSpacing() {
                 {/* // <Accordion expanded={expanded === "panel_buyer" + id} onChange={handleChange("panel_buyer" + id)}>
                   //   <AccordionSummary aria-controls={"panel_buyer" + id + "d-content"} id={"panel_buyer" + id + "panel1d-header"}>
                   //     <Typography>{list}</Typography>
-                  //     <Typography style={{ backgroundColor: 'pink' }}>
+                  //     <Typography style={{ backgroundColor: '#76A14C' }}>{"تفصیل: "}
                   //     {list.buyer[0].name} </Typography>
 
-                  //     <Typography style={{ backgroundColor: 'lightblue', paddingLeft: 30 }}>{"  ~"+list.cropName+" Rs:" + list.netAmount+"/="} </Typography>
+                  //     <Typography style={{ backgroundColor: '#E53612', paddingLeft: 30, marginRight: '10px' }}>{"  ~"+list.cropName+" Rs:" + list.netAmount+"/="} </Typography>
                   //   </AccordionSummary>
                   //   <AccordionDetails>
 

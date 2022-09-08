@@ -13,12 +13,9 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { Link, Route, Routes } from 'react-router-dom';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
@@ -116,7 +113,7 @@ export default function PersistentDrawerRight() {
       <Drawer
         PaperProps={{
           sx: {
-            backgroundColor: '#0B2512'
+            backgroundColor: 'white'
           }
         }}
         sx={{
@@ -136,7 +133,7 @@ export default function PersistentDrawerRight() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List style={{ backgroundColor: '#0B2512', color: '#76A14C' }}>
+        <List style={{ color: '#76A14C' }}>
           <Link style={{ textDecoration: 'none', color: '#76A14C' }} to='/Rokar'>
             <ListItemButton>
               <ListItemIcon>

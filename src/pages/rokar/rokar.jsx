@@ -199,7 +199,7 @@ export default function RowAndColumnSpacing() {
         {/* Input Modal */}
         <div style={{ margin: 10 }}><div>
           <Button style={{ backgroundColor: '#0B2512', color: 'white', fontSize: 16 }} variant="outlined" onClick={handleClickOpen}>
-            نیا روکڑ
+            نیو انٹری
           </Button>
 
           <Dialog dir="rtl" open={open} onClose={handleClose}>
@@ -357,10 +357,11 @@ export default function RowAndColumnSpacing() {
                     <Accordion dir="rtl" expanded={expanded === "panel_" + id} onChange={handleChange("panel_" + id)}>
                       <AccordionSummary aria-controls={"panel_" + id + "d-content"} id={"panel_" + id + "panel1d-header"}>
                         <Typography style={{ marginLeft: '10px' }}>{id}</Typography>
-                        <Typography style={{ backgroundColor: '#76A14C' }}>{"تفصیل: "}{list.accountDetails[0].accountType === 'bank' ?
-                          list.accountDetails[0].name + " | " + list.accountDetails[0].accountTitle
-                          : list.accountDetails[0].name + " ولد  " + list.accountDetails[0].fatherName + " @ " +
-                          list.accountDetails[0].address + " "} </Typography>
+                        <Typography style={{ backgroundColor: '#76A14C' }}>{"تفصیل: "}
+                          {list.accountDetails[0].accountType === 'bank' ?
+                            list.accountDetails[0].name + " | " + list.accountDetails[0].accountTitle
+                            : list.accountDetails[0].name + " ولد  " + list.accountDetails[0].fatherName + " @ " +
+                            list.accountDetails[0].address + " "} </Typography>
                         <Typography style={{ backgroundColor: '#E53612', paddingLeft: 30, marginRight: '10px' }}>{" Rs: " + list.amount} </Typography>
                       </AccordionSummary>
                       <AccordionDetails>
